@@ -1,9 +1,9 @@
 # nioKGame
 A little game for learning Python and Pygame.
+
+### Contributors
+* SachaTheDuck (me)
+
+### Ressources :
 * images from https://www.flaticon.com
 * sounds from https://www.sound-fishing.net
-
-### Thanks to :
-* Me for having the time
-* Me for having the motivation
-* My parents for being in life
