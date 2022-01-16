@@ -38,6 +38,7 @@ class Jeu:
     def debut(self):
         self.jouer = True
         self.spawn_chasseur()
+        self.spawn_chasseur()
 
     def fin_jeu(self):
         self.all_chasseur = pygame.sprite.Group()
