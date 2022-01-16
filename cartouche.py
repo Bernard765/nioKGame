@@ -1,17 +1,34 @@
 import pygame
-import math
+import random
 
 
-# Class PluieDeCartouche
-class PluieDeCartouche:
+# Class Cartouche
+class Cartouche(pygame.sprite.Sprite):
 
-    # Chargement
-    def __init__(self):
-        self.pourcentage = 0
+    # Constructeur
+    def __init__(self, cartoucheEvent):
+        super().__init__()
+        self.image = pygame.image.load('assets/balle.png')
+        self.rect = self.image.get_rect()
+        self.velocity = random.randint(1, 3)
+        self.rect.x = random.randint(10, 900)
+        self.rect.y = - random.randint(0, 200)
+        self.cartoucheEvent = cartoucheEvent
 
-    def ajout_pourcentage(self):
-        self.pourcentage += 1
+    def supprimer(self):
+        self.cartoucheEvent.all_cartouche.remove(self)
+        if len(self.cartoucheEvent.all_cartouche) == 0:
+            self.cartoucheEvent.reset_pourcentage()
+            self.cartoucheEvent.tomber = False
+            self.cartoucheEvent.jeu.spawn_chasseur()
+            self.cartoucheEvent.jeu.spawn_chasseur()
+            self.cartoucheEvent.jeu.ajout_score(3)
 
-    def update_barre_cartouche(self, surface):
-        pygame.draw.rect(surface, (73, 73, 73), [0, surface.get_height() - 20, surface.get_width(), 12])
-        pygame.draw.rect(surface, (253, 216, 53), [0, surface.get_height() -20 , math.ceil(math.ceil(surface.get_width() / 100) * self.pourcentage), 12])
+    def tombe(self):
+        self.rect.y += self.velocity
+        if self.rect.y >= 400:
+            self.supprimer()
+
+        if self.cartoucheEvent.jeu.check_collision(self, self.cartoucheEvent.jeu.all_joueur):
+            self.supprimer()
+            self.cartoucheEvent.jeu.joueur.degat(20)
