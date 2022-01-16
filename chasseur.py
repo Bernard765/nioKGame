@@ -14,15 +14,15 @@ class Chasseur(pygame.sprite.Sprite):
         self.attack = 0.2
         self.image = pygame.image.load('assets/chasseur.png')
         self.rect = self.image.get_rect()
-        self.rect.x = 1000
+        self.rect.x = 1000 + random.randint(0, 200)
         self.rect.y = 410
-        self.velocity = random.randint(1, 2)
+        self.velocity = 1
 
     def degat(self, montant):
         self.health -= montant
 
         if self.health <= 0:
-            self.rect.x = 1000
+            self.rect.x = 1000 + random.randint(0, 200)
             self.health = 80
             self.jeu.gestionson.play('chasseur')
             self.jeu.ajout_score()
