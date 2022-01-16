@@ -92,4 +92,5 @@ while running:
                     jeu.debut()
                     jeu.gestionson.play('debut')
             elif github_rect.collidepoint(event.pos):
-                webbrowser.open('https://github.com/SachaTheDuck/nioKGame', new=2)
+                if not jeu.jouer:
+                    webbrowser.open('https://github.com/SachaTheDuck/nioKGame', new=2)
