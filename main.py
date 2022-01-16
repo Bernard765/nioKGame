@@ -10,6 +10,9 @@ jeu = Jeu()
 joueur = Joueur(jeu)
 pain = Pain(joueur)
 
+# TODO * Ajouter un boutton pour allumer/atteindre la musique, pareil pour les bruitages
+# TODO * Ajouter des difficultés
+
 # Logo
 logo = pygame.image.load('assets/logo.png')
 logo = pygame.transform.scale(logo, (500, 500))
