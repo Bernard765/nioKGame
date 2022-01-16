@@ -10,4 +10,4 @@ A little game for learning Python and Pygame.
 * logo created by me from images from Flaticon.
 
 ### About the code
-The comments are in French, varibales too.
+The comments are in French, variables too.
