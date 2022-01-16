@@ -6,7 +6,7 @@ A little game for learning Python and Pygame.
 
 ### Ressources :
 * images from https://www.flaticon.com
-* sounds from https://www.sound-fishing.net
+* sounds from https://www.sound-fishing.net & http://www.universal-soundbank.com/
 * logo created by me from images from Flaticon.
 
 ### About the code
