@@ -48,8 +48,8 @@ class Jeu:
     def update(self, window):
         # Application du score & Meilleur score
         police = pygame.font.SysFont("permanent marker", 16)
-        score_text = police.render(f"Votre score : {self.score}", 1, (0, 0, 0))
-        meilleur_score_text = police.render(f"Meilleur score : {self.meilleur_score}", 1, (0, 0, 0))
+        score_text = police.render(f"Votre score : {self.score}", True, (0, 0, 0))
+        meilleur_score_text = police.render(f"Meilleur score : {self.meilleur_score}", True, (0, 0, 0))
         window.blit(score_text, (20, 20))
         window.blit(meilleur_score_text, (20, 40))
 
