@@ -1,5 +1,6 @@
 import pygame
 import random
+from cartoucheEvent import PluieDeCartouche
 
 
 # Class Chasseur
@@ -9,8 +10,8 @@ class Chasseur(pygame.sprite.Sprite):
     def __init__(self, jeu):
         super().__init__()
         self.jeu = jeu
-        self.health = 60
-        self.max_health = 60
+        self.health = 80
+        self.max_health = 80
         self.attack = 0.2
         self.image = pygame.image.load('assets/chasseur.png')
         self.rect = self.image.get_rect()
@@ -23,9 +24,13 @@ class Chasseur(pygame.sprite.Sprite):
 
         if self.health <= 0:
             self.rect.x = 1000 + random.randint(0, 200)
-            self.health = 80
+            self.health = self.max_health
             self.jeu.gestionson.play('chasseur')
-            self.jeu.ajout_score()
+            self.jeu.ajout_score(1)
+
+            if self.jeu.pluie_cartouche.barre_remplie():
+                self.jeu.all_chasseur.remove(self)
+                self.jeu.pluie_cartouche.tentative_pluie()
 
     def update_barre_vie(self, surface):
         pygame.draw.rect(surface, (73, 73, 73), [self.rect.x + 18, self.rect.y - 10, self.max_health, 8])
