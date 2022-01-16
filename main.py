@@ -88,7 +88,8 @@ while running:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if bouton_debut_rect.collidepoint(event.pos):
-                jeu.debut()
-                jeu.gestionson.play('debut')
+                if not jeu.jouer:
+                    jeu.debut()
+                    jeu.gestionson.play('debut')
             elif github_rect.collidepoint(event.pos):
                 webbrowser.open('https://github.com/SachaTheDuck/nioKGame', new=2)
