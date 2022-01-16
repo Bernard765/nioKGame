@@ -25,7 +25,7 @@ class Pain(pygame.sprite.Sprite):
     def supprimer(self):
         self.joueur.all_pain.remove(self)
 
-    def mouvementDroit(self):
+    def mouvementdroit(self):
         self.rect.x += self.velocity
         self.rotation()
 
