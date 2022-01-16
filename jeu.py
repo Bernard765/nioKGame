@@ -1,10 +1,8 @@
 import pygame
 from joueur import Joueur
 from chasseur import Chasseur
-from cartouche import PluieDeCartouche
+from cartoucheEvent import PluieDeCartouche
 from son import GestionSon
-
-# TODO Ajouter la pluie de cartouches
 
 
 # Class Jeu
@@ -30,17 +28,16 @@ class Jeu:
         self.meilleur_score = 0
 
         # Evenement pluie de cartouche
-        self.pluie_cartouche = PluieDeCartouche()
+        self.pluie_cartouche = PluieDeCartouche(self)
 
         # Touche
         self.pressed = {}
-        
-        # Chasseur
-        self.spawn_chasseur()
-        self.spawn_chasseur()
 
     def debut(self):
         self.jouer = True
+        # Chasseur
+        self.spawn_chasseur()
+        self.spawn_chasseur()
 
     def fin_jeu(self):
         self.all_chasseur = pygame.sprite.Group()
@@ -50,8 +47,9 @@ class Jeu:
         if self.meilleur_score < self.score:
             self.meilleur_score = self.score
         self.score = 0
+        self.pluie_cartouche.reset_pourcentage()
 
-    def ajout_score(self, points=1):
+    def ajout_score(self, points):
         self.score += points
 
     def update(self, window):
@@ -77,6 +75,9 @@ class Jeu:
         # Application de chasseur
         self.all_chasseur.draw(window)
 
+        # Application de cartouche
+        self.pluie_cartouche.all_cartouche.draw(window)
+
         # Recuperer les pains
         for pain in self.joueur.all_pain:
             pain.mouvementdroit()
@@ -85,6 +86,10 @@ class Jeu:
         for chasseur in self.all_chasseur:
             chasseur.avancer()
             chasseur.update_barre_vie(window)
+
+        # Recuperer les cartouches
+        for cartouche in self.pluie_cartouche.all_cartouche:
+            cartouche.tombe()
 
         # Deplacement Gauche - Droite
         if self.pressed.get(pygame.K_RIGHT) and self.joueur.rect.x + self.joueur.rect.width < window.get_width():
