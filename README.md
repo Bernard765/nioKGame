@@ -7,3 +7,6 @@ A little game for learning Python and Pygame.
 ### Ressources :
 * images from https://www.flaticon.com
 * sounds from https://www.sound-fishing.net
+
+### About the code
+The comments are in French, varibales too.
