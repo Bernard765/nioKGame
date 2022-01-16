@@ -22,8 +22,9 @@ class Jeu:
         # Son
         self.gestionson = GestionSon()
 
-        # Score
+        # Score & Meilleur score
         self.score = 0
+        self.meilleur_score = 0
 
         # Touche
         self.pressed = {}
@@ -35,18 +36,22 @@ class Jeu:
     def fin_jeu(self):
         self.all_chasseur = pygame.sprite.Group()
         self.joueur.health = self.joueur.max_health
-        self.score = 0
         self.jouer = False
         self.gestionson.play('mort')
+        if self.meilleur_score < self.score:
+            self.meilleur_score = self.score
+        self.score = 0
 
     def ajout_score(self, points=1):
         self.score += points
 
     def update(self, window):
-        # Application du score
+        # Application du score & Meilleur score
         police = pygame.font.SysFont("permanent marker", 16)
         score_text = police.render(f"Votre score : {self.score}", 1, (0, 0, 0))
+        meilleur_score_text = police.render(f"Meilleur score : {self.meilleur_score}", 1, (0, 0, 0))
         window.blit(score_text, (20, 20))
+        window.blit(meilleur_score_text, (20, 40))
 
         # Application du joueur
         window.blit(self.joueur.image, self.joueur.rect)
