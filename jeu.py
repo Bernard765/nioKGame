@@ -1,7 +1,10 @@
 import pygame
 from joueur import Joueur
 from chasseur import Chasseur
+from cartouche import PluieDeCartouche
 from son import GestionSon
+
+# TODO Ajouter la pluie de cartouches
 
 
 # Class Jeu
@@ -25,6 +28,9 @@ class Jeu:
         # Score & Meilleur score
         self.score = 0
         self.meilleur_score = 0
+
+        # Evenement pluie de cartouche
+        self.pluie_cartouche = PluieDeCartouche()
 
         # Touche
         self.pressed = {}
@@ -55,6 +61,9 @@ class Jeu:
 
         # Application du joueur
         window.blit(self.joueur.image, self.joueur.rect)
+
+        # Barre de cartouche
+        self.pluie_cartouche.update_barre_cartouche(window)
 
         # Vie du joueur
         self.joueur.update_barre_vie(window)
