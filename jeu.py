@@ -67,7 +67,7 @@ class Jeu:
 
         # Recuperer les pains
         for pain in self.joueur.all_pain:
-            pain.mouvementDroit()
+            pain.mouvementdroit()
 
         # Recuperer les chasseurs
         for chasseur in self.all_chasseur:
